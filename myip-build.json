@@ -2,6 +2,7 @@
   "builders": [
     {
       "type": "docker",
+      "name": "alpine",
       "image": "alpine-sdk",
       "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/sh", "-l"],
       "pull": false,
