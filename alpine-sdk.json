@@ -1,0 +1,36 @@
+{
+  "post-processors": [
+    {
+      "tag": "latest",
+      "repository": "alpine-sdk",
+      "type": "docker-tag"
+    }
+  ],
+  "provisioners": [
+    {
+      "inline": [
+        "apk update",
+        "apk add alpine-sdk cmake",
+        "rm /var/cache/apk/*",
+        "sleep 5"
+      ],
+      "type": "shell"
+    }
+  ],
+  "builders": [
+    {
+      "commit": true,
+      "pull": true,
+      "run_command": [
+        "-d",
+        "-i",
+        "-t",
+        "{{.Image}}",
+        "/bin/sh",
+        "-l"
+      ],
+      "image": "alpine",
+      "type": "docker"
+    }
+  ]
+}

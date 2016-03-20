@@ -1,0 +1,32 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "alpine-sdk",
+      "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/sh", "-l"],
+      "pull": false,
+      "discard": true
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+	"apk update",
+        "apk add curl curl-dev",
+        "git clone https://github.com/kikitux/myip-cli",
+        "mkdir -p myip-cli/build",
+        "cd myip-cli/build",
+        "cmake ..",
+        "make",
+        "sleep 5"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "/myip-cli/build/myip",
+      "destination": "myip",
+      "direction": "download"
+    }
+  ]
+}
