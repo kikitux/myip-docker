@@ -12,7 +12,7 @@ endif
 
 myip: myip-build.json
 	@packer build myip-build.json
-	-docker rmi -f myip
+	@-docker rmi -f myip
 	@docker build -t myip .
 
 image-myip:
@@ -22,7 +22,7 @@ endif
 
 clean:
 	@-rm myip
-	-docker rmi -f myip
+	@-docker rmi -f myip
 
 test: all
 	-docker run --rm myip
