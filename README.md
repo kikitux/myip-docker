@@ -27,3 +27,15 @@ kikitux@nuc:~/Dropbox/work/docker/myip$
 ```
 
 hint: 357.8 KB
+
+### sample run
+
+```bash
+kikitux@nuc:~/Dropbox/work/docker/myip$ docker run --rm myip -h
+use: /myip [-6] [-i ethN]
+kikitux@nuc:~/Dropbox/work/docker/myip$ docker run --rm myip -i eth0
+172.17.0.2
+kikitux@nuc:~/Dropbox/work/docker/myip$ docker run --rm myip
+202.202.202.151
+kikitux@nuc:~/Dropbox/work/docker/myip$ 
+```
