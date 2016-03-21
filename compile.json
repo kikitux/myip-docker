@@ -14,23 +14,15 @@
       "type": "shell",
       "inline": [
         "git clone https://github.com/kikitux/myip-cli",
-        "mkdir -p myip-cli/build",
-        "cd myip-cli/build",
-        "cmake ..",
-        "make",
+        "cd myip-cli/",
+        "gcc -o myip -static *c *h",
         "sleep 5"
       ]
     },
     {
       "type": "file",
-      "source": "/myip-cli/build/myip",
+      "source": "/myip-cli/myip",
       "destination": "myip",
-      "direction": "download"
-    },
-    {
-      "type": "file",
-      "source": "/lib/ld-musl-x86_64.so.1",
-      "destination": "ld-musl-x86_64.so.1",
       "direction": "download"
     }
   ]
