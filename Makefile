@@ -10,8 +10,8 @@ ifndef image-alpine-sdk
 	@packer build alpine-sdk.json
 endif
 
-myip: myip-build.json
-	@packer build myip-build.json
+myip: compile.json
+	@packer build compile.json
 	@-docker rmi -f myip
 	@docker build -t myip .
 
@@ -20,9 +20,11 @@ ifndef image-myip
 	@docker build -t myip .
 endif
 
+
 clean:
 	@-rm myip
 	@-docker rmi -f myip
+	@-docker rmi -f alpine-sdk
 
 test: all
 	-docker run --rm myip

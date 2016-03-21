@@ -13,8 +13,6 @@
     {
       "type": "shell",
       "inline": [
-	"apk update",
-        "apk add curl curl-dev",
         "git clone https://github.com/kikitux/myip-cli",
         "mkdir -p myip-cli/build",
         "cd myip-cli/build",
@@ -27,6 +25,12 @@
       "type": "file",
       "source": "/myip-cli/build/myip",
       "destination": "myip",
+      "direction": "download"
+    },
+    {
+      "type": "file",
+      "source": "/lib/ld-musl-x86_64.so.1",
+      "destination": "ld-musl-x86_64.so.1",
       "direction": "download"
     }
   ]

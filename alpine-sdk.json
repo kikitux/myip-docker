@@ -10,7 +10,7 @@
     {
       "inline": [
         "apk update",
-        "apk add alpine-sdk cmake",
+        "apk add alpine-sdk cmake curl-dev",
         "rm /var/cache/apk/*",
         "sleep 5"
       ],
