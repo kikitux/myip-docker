@@ -27,4 +27,5 @@ clean:
 	@-docker rmi -f alpine-sdk
 
 test: all
-	-docker run --rm myip
+	-docker run --rm myip -h
+	-docker run --rm myip -i eth0
