@@ -16,6 +16,7 @@
         "git clone https://github.com/kikitux/myip-cli",
         "cd myip-cli/",
         "gcc -o myip -static *c *h",
+        "strip myip",
         "tar cf myip.tar myip",
         "sleep 5"
       ]
