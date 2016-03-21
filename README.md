@@ -19,9 +19,11 @@ docker run --rm myip
 ## generated docker 
 
 ```bash
-$ docker images
+$ docker images myip
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-myip                latest              7e53a5d0d95a        13 seconds ago      5.51 MB
+myip                latest              2cb1f1bea19b        28 seconds ago      357.8 kB
+kikitux@nuc:~/Dropbox/work/docker/myip$ 
+
 ```
 
-hint: 5.5 MB
+hint: 357.8 KB

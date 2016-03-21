@@ -1,5 +1,4 @@
-from alpine
+from scratch
 
-copy	myip /myip
-run	chmod +x myip
-cmd	./myip
+ADD	myip.tar /
+ENTRYPOINT ["/myip"]
