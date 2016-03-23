@@ -53,9 +53,16 @@ clean:
 	@-docker rmi -f alpine-sdk-aports
 
 test: all
-	-docker run --rm myip -h
-	-docker run --rm myip -i eth0
-	-docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && myip -h'
-	-docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && myip -i eth0'
-	-docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && myip -v myvar -i eth0 && echo "var myvar=$${myvar}"'
+	docker run --rm myip -h
+	docker run --rm myip -i eth0
+	docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && myip -h'
+	docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && myip -i eth0'
+	docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && myip -v myvar -i eth0 && echo "var myvar=$${myvar}"'
+	docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && for x in {1..2}; do myip -v pepe -i eth0; done && echo "var pepe=$${pepe}"'
+	docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && for x in {1..2}; do myip -v pepe -o -i eth0; done && echo "var pepe=$${pepe}"'
+
+speed: all
+	docker run --rm -i alpine time sh -c 'for x in `seq 1 2222`; do var="`ip addr show eth0`"; done'
+	docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && time for x in {1..2222}; do myip -v pepe -o -i eth0; done'
+
 
