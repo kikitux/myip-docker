@@ -47,10 +47,9 @@ ifndef image-builtin_myip
 endif
 
 clean:
-	@-rm myip.tar
-	@-docker rmi -f myip
-	@-docker rmi -f alpine-sdk
-	@-docker rmi -f alpine-sdk-aports
+	@-rm myip.tar builtin_myip.tar
+	@-docker rmi -f myip builtin_myip
+	@-docker rmi -f alpine-sdk alpine-sdk-aports alpine-sdk-aports-bash
 
 test: all
 	docker run --rm myip -h
