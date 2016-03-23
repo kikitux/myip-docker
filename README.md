@@ -1,5 +1,5 @@
 # myip-docker
-repo to build a docker container for myip-cli
+repo to build a docker container for myip
 
 ## build
 
