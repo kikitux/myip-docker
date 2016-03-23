@@ -1,4 +1,4 @@
 from alpine
 
-RUN	apk update && apk add bash && rm /var/cache/apk/*
-ADD	builtin_myip.tar /root/
+RUN	sed -i -e 's/dl-cdn/dl-2/g' /etc/apk/repositories && apk update && apk add bash && rm /var/cache/apk/* && echo enable -f builtin_myip builtin_myip | tee -a /root/.bash_profile
+ADD	builtin_myip.tar /usr/local/lib

@@ -54,14 +54,16 @@ clean:
 test: all
 	docker run --rm myip -h
 	docker run --rm myip -i eth0
-	docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && myip -h'
-	docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && myip -i eth0'
-	docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && myip -v myvar -i eth0 && echo "var myvar=$${myvar}"'
-	docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && for x in {1..2}; do myip -v myvar -i eth0; done && echo "var myvar=$${myvar}"'
-	docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && for x in {1..2}; do myip -v myvar -o -i eth0; done && echo "var myvar=$${myvar}"'
+	docker run --rm -i builtin_myip bash -l -c 'myip -h'
+	docker run --rm -i builtin_myip bash -l -c 'myip -i eth0'
+	docker run --rm -i builtin_myip bash -l -c 'myip -v myvar -i eth0 && echo "var myvar=$${myvar}"'
+	docker run --rm -i builtin_myip bash -l -c 'for x in {1..2}; do myip -v myvar -i eth0; done && echo "var myvar=$${myvar}"'
+	docker run --rm -i builtin_myip bash -l -c 'for x in {1..2}; do myip -v myvar -o -i eth0; done && echo "var myvar=$${myvar}"'
+
+times ?= 2222
 
 speed: all
-	docker run --rm -i alpine time sh -c 'for x in `seq 1 2222`; do var="`ip addr show eth0 | grep 172 | cut -d" " -f6`"; done && echo "var myvar=&$myvar"'
-	docker run --rm -i builtin_myip bash -c 'enable -f root/builtin_myip builtin_myip && time for x in {1..2222}; do myip -v myvar -o -i eth0; done && echo "var myvar=&$myvar"'
+	docker run --rm -i alpine time sh -c 'for x in `seq 1 $(times)`; do var="`ip addr show eth0 | grep 172 | cut -d" " -f6`"; done && echo "var myvar=&$myvar"'
+	docker run --rm -i builtin_myip time bash -l -c 'for x in {1..$(times)}; do myip -v myvar -o -i eth0; done && echo "var myvar=&$myvar"'
 
 

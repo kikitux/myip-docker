@@ -9,6 +9,7 @@
   "provisioners": [
     {
       "inline": [
+        "sed -i -e 's/dl-cdn/dl-2/g' /etc/apk/repositories",
         "apk update",
         "apk add alpine-sdk git alpine-sdk cmake curl-dev readline-dev ncurses-dev musl-utils musl-dev musl  bison flex flex-dev flex-libs alpine-sdk make cmake autoconf automake",
         "rm /var/cache/apk/*",
@@ -29,7 +30,7 @@
         "/bin/sh",
         "-l"
       ],
-      "image": "alpine",
+      "image": "alpine:edge",
       "type": "docker"
     }
   ]
