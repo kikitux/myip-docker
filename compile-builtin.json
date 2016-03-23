@@ -1,0 +1,31 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "name": "alpine",
+      "image": "alpine-sdk-aports-bash",
+      "run_command": ["-d", "-i", "-t", "{{.Image}}", "/bin/sh", "-l"],
+      "pull": false,
+      "discard": true
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "git clone https://github.com/kikitux/myip",
+        "cd myip/builtin/",
+        "cmake .",
+        "make",
+        "tar cf builtin_myip.tar builtin_myip",
+        "sleep 5"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "/myip/builtin/builtin_myip.tar",
+      "destination": "builtin_myip.tar",
+      "direction": "download"
+    }
+  ]
+}

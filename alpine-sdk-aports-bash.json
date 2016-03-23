@@ -2,7 +2,7 @@
   "post-processors": [
     {
       "tag": "latest",
-      "repository": "alpine-sdk",
+      "repository": "alpine-sdk-aports-bash",
       "type": "docker-tag"
     }
   ],
@@ -10,8 +10,11 @@
     {
       "inline": [
         "apk update",
-        "apk add alpine-sdk git alpine-sdk cmake curl-dev readline-dev ncurses-dev musl-utils musl-dev musl  bison flex flex-dev flex-libs alpine-sdk make cmake autoconf automake",
+        "apk add git alpine-sdk cmake curl-dev readline-dev ncurses-dev musl-utils musl-dev musl  bison flex flex-dev flex-libs alpine-sdk make cmake autoconf automake",
         "rm /var/cache/apk/*",
+        "git clone git://dev.alpinelinux.org/aports",
+        "cd aports/main/bash",
+        "abuild -F unpack && abuild -F prepare && abuild -F build && abuild -F package",
         "sleep 5"
       ],
       "type": "shell"
@@ -20,7 +23,7 @@
   "builders": [
     {
       "commit": true,
-      "pull": true,
+      "pull": false,
       "run_command": [
         "-d",
         "-i",
@@ -29,7 +32,7 @@
         "/bin/sh",
         "-l"
       ],
-      "image": "alpine",
+      "image": "alpine-sdk",
       "type": "docker"
     }
   ]

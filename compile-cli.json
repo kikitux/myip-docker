@@ -13,9 +13,9 @@
     {
       "type": "shell",
       "inline": [
-        "git clone https://github.com/kikitux/myip-cli",
-        "cd myip-cli/",
-        "gcc -o myip -static *c *h",
+        "git clone https://github.com/kikitux/myip",
+        "cd myip/cli/",
+        "gcc -o myip -static -I../lib/ cli.c ../lib/*.h ../lib/*.c",
         "strip myip",
         "tar cf myip.tar myip",
         "sleep 5"
@@ -23,7 +23,7 @@
     },
     {
       "type": "file",
-      "source": "/myip-cli/myip.tar",
+      "source": "/myip/cli/myip.tar",
       "destination": "myip.tar",
       "direction": "download"
     }

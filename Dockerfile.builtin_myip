@@ -1,0 +1,4 @@
+from alpine
+
+RUN	apk update && apk add bash && rm /var/cache/apk/*
+ADD	builtin_myip.tar /root/
