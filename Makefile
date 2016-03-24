@@ -63,7 +63,7 @@ test: all
 times ?= 2222
 
 speed: all
-	docker run --rm -i alpine time sh -c 'for x in `seq 1 $(times)`; do var="`ip addr show eth0 | grep 172 | cut -d" " -f6`"; done && echo "var myvar=&$myvar"'
-	docker run --rm -i builtin_myip time bash -l -c 'for x in {1..$(times)}; do myip -v myvar -o -i eth0; done && echo "var myvar=&$myvar"'
+	docker run --rm -i alpine time sh -c 'for x in `seq 1 $(times)`; do myvar="`ip addr show eth0 | grep 172 | cut -d" " -f6`"; done && echo "var myvar=$$myvar"'
+	docker run --rm -i builtin_myip time bash -l -c 'for x in {1..$(times)}; do myip -v myvar -o -i eth0; done && echo "var myvar=$$myvar"'
 
 
